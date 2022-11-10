@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /* 初始化部分标签属性值*/
+        h1, ul, li, a body {
+            margin: 0px;
+            padding: 0px;
+            text-decoration: none;
+        }
+
+        h2 {
+            font-size: 30px;
+            background-color: #ff9a72;
+            text-align: center;
+            margin: 0;
+            color: white;
+        }
+
+        #app {
+            width: 300px;
+            border: 1px solid red;
+            margin: 0 auto;
+        }
+
+        form {
+            background: #a0e3c9;
+        }
+
+        form > div {
+            text-align: center;
+        }
+
+        .inputLogin {
+            border: 3px solid rebeccapurple;
+        }
+
+        span {
+            color: red;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <h2>会员登陆</h2>
+    <form action="#" method="post">
+        <div>
+            <label>
+                <span>用户名：</span>
+                <input class="inputLogin" type="text">
+            </label>
+        </div>
+
+        <div>
+            <label>
+                <span>密码：</span>
+                <input class="inputLogin" type="password">
+            </label>
+        </div>
+
+        <div>
+            <label>
+                <span>邮箱：</span>
+                <input class="inputLogin" type="email">
+            </label>
+        </div>
+
+
+    </form>
+
+</div>
+
+</body>
+</html>

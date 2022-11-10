@@ -1,9 +1,6 @@
 package hmac
 
 import (
-	"adx-track-v8/utils"
-	"adx-track-v8/utils/aes"
-	ecb "adx-track-v8/utils/aes128"
 	"bytes"
 	"crypto/hmac"
 	"crypto/sha1"
@@ -12,15 +9,17 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
-	"github.com/aosting/goTools/plog"
-	"github.com/aosting/goTools/str2"
 	"strconv"
+	"strings"
+	"test/client/utils"
+	"test/client/utils/aes"
+	ecb "test/client/utils/aes128"
 )
 
 /**********************************************
 ** @Des: vivohmac
 ** @Author: zhangxueyuan
-** @Date:   2018-09-14 15:30:50
+** @4.Date:   2018-09-14 15:30:50
 ** @Last Modified by:   zhangxueyuan
 ** @Last Modified time: 2018-09-14 15:30:50
 ***********************************************/
@@ -68,12 +67,12 @@ conf_sig = hmac(i_key, price || iv)
 success = (conf_sig == sig)
 */
 
-func DecodingVivo(price string) float64 {
+func DecodingVivo(price string) (float64, error) {
 	if price, e := decoding(price, encSecret, initSecret); e != nil {
-		fmt.Println("DecodingVivo is err: ", e, " price is:", price)
-		return 0
+		err := errors.New("DecodingVivo is err: " + e.Error() + " price is:" + string(price))
+		return 0, err
 	} else {
-		return float64(bytesToInt64(price)) / float64(1000000)
+		return float64(bytesToInt64(price)) / float64(1000000), nil
 	}
 }
 
@@ -95,14 +94,13 @@ func decodingXiaomi(price, encSecret, initSecret string) string {
 }
 
 func DecodingXiaomi(price, buss string) (string, []byte) {
-
 	var b []byte
 	if buss == "active" || buss == "tb_deeplink" ||
 		buss == "tb_new_login" || buss == "tb_first_buy" {
 		return "0", b
 	}
 	if price1, e := decoding(price, encSecretXM, initSecretXM); e != nil {
-		plog.WARN("DecodingXiaomi is err: ", e, " price is:", price, "  buss is:", buss)
+		fmt.Println("DecodingXiaomi is err: ", e, " price is:", price, "  buss is:", buss)
 		return "0", b
 	} else {
 		return string(bytes.TrimRight(price1, "\x00")), price1
@@ -112,7 +110,7 @@ func DecodingXiaomi(price, buss string) (string, []byte) {
 func DecodingXZXiaomi(price string) (string, []byte) {
 	var b []byte
 	if price1, e := decoding(price, encSecretXM_XZ, initSecretXM_XZ); e != nil {
-		plog.WARN("DecodingXZXiaomi is err: ", e)
+		fmt.Println("DecodingXZXiaomi is err: ", e)
 		return "0", b
 	} else {
 		return string(bytes.TrimRight(price1, "\x00")), price1
@@ -124,18 +122,19 @@ func DecodingXiaomiByte(price string) []byte {
 	return price1
 }
 
-func DecodingKwaiByte(price string) string {
+func DecodingKwaiByte(price string) (string, error) {
 	if len(price) == 0 {
-		return "0"
+		err := errors.New("input params is empty!")
+		return "0", err
 	}
 	ivs := utils.UrlDecode(price)
 	b, err := base64.StdEncoding.DecodeString(ivs)
 	if err != nil {
-		fmt.Println("base64.StdEncoding.DecodeString() err: ", err)
-		return "0"
+		err = errors.New("base64.StdEncoding.DecodeString() err: " + err.Error())
+		return "0", err
 	}
 	price1 := ecb.AesDecryptECB(b, []byte(encSecretKwai))
-	return string(price1)
+	return string(price1), nil
 }
 
 func decoding360(price, encSecret, initSecret string) []byte {
@@ -150,7 +149,7 @@ func decoding360(price, encSecret, initSecret string) []byte {
 func Decoding360(price string) float64 {
 
 	if price, e := decoding(price, string(encSecret360), string(initSecret360)); e != nil {
-		plog.WARN("DecodingVivo is err: ", e)
+		fmt.Println("DecodingVivo is err: ", e)
 		return 0
 	} else {
 		//微分--> 分
@@ -158,16 +157,17 @@ func Decoding360(price string) float64 {
 	}
 }
 
-func DecodingBaidu(price string) float64 {
-	if str2.IsBlank(price) {
-		return 0
+func DecodingBaidu(price string) (float64, error) {
+	if len(strings.TrimSpace(price)) == 0 {
+		err := errors.New("input params is empty!")
+		return 0, err
 	}
 	if price, e := decoding(price, string(encSecretBaidu), string(initSecretBaidu)); e != nil {
-		plog.WARN("DecodingBaidu is err: ", e)
-		return 0
+		err := errors.New("DecodingBaidu is err: " + e.Error())
+		return 0, err
 	} else {
 		// 转换为分
-		return float64(bytesToInt64(price))
+		return float64(bytesToInt64(price)), nil
 	}
 }
 
@@ -200,11 +200,11 @@ func decoding(price, encSecret, initSecret string) (pricebyte []byte, err error)
 	var ivs []byte
 	ivs, err = aes.Base64URLDecode(price)
 	if err != nil {
-		plog.ERROR("Decoding price error", err)
+		fmt.Println("Decoding price error", err)
 		return pricebyte, err
 	}
 	if len(ivs) != 28 {
-		plog.ERROR("Decoding price error size!=28")
+		fmt.Println("Decoding price error size!=28")
 		return pricebyte, errors.New("Decoding price error size!=28")
 	}
 
@@ -215,7 +215,7 @@ func decoding(price, encSecret, initSecret string) (pricebyte []byte, err error)
 	pad := hmac.New(sha1.New, []byte(encSecret))
 	_, err = pad.Write(iv)
 	if err != nil {
-		plog.ERROR("hmac.New.Write error", err)
+		fmt.Println("hmac.New.Write error", err)
 		return pricebyte, err
 	}
 	price_pad := pad.Sum(nil)
@@ -224,12 +224,12 @@ func decoding(price, encSecret, initSecret string) (pricebyte []byte, err error)
 	_, err = conf_tmp.Write(tmpprice)
 
 	if err != nil {
-		plog.ERROR("hmac.New.Write error", err)
+		fmt.Println("hmac.New.Write error", err)
 		return pricebyte, err
 	}
 	_, err = conf_tmp.Write(iv)
 	if err != nil {
-		plog.ERROR("hmac.New.Write error", err)
+		fmt.Println("hmac.New.Write error", err)
 		return pricebyte, err
 	}
 	conf_sig := conf_tmp.Sum(nil)
@@ -237,7 +237,7 @@ func decoding(price, encSecret, initSecret string) (pricebyte []byte, err error)
 		//return float64(bytesToInt64(tmpprice)) / float64(1000000)
 		return tmpprice, nil
 	} else {
-		plog.ERROR("signature error")
+		fmt.Println("signature error")
 		err = errors.New("signature error")
 	}
 	return pricebyte, err

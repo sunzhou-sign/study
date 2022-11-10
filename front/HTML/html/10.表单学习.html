@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆注册</title>
+</head>
+<body>
+<h3>1、表单</h3>
+
+<h4>登陆</h4>
+<form action="1.我的第一个网页.html" method="get">
+    <!--    文本输入框： input type="text"
+            value: 默认初始值
+            maxlenght: 最长输入长度
+            size: 文本框长度
+            palceholder: 提示信息
+            required: 非空
+            pattern: 正则表达式
+    -->
+    <p><label>名字:
+        <input type="text" name="username" value="admin" readonly maxlength="8" size="25">
+    </label></p>
+
+    <p><label>密码:
+        <input type="password" name="pwd" placeholder="请输入密码" required>
+    </label></p>
+
+    <p>性别: <label>
+        <!--checked: 默认勾选-->
+        <input type="radio" value="boy" name="sex" disabled>男
+        <input type="radio" value="girl" name="sex" checked>女
+    </label></p>
+
+    <p>爱好:<label>
+        <!--checked: 默认勾选-->
+        <input type="checkbox" value="sleep" name="hobby">睡觉
+        <input type="checkbox" value="eat" name="hobby">吃
+        <input type="checkbox" value="chat" name="bobby" checked>聊天
+        <input type="checkbox" value="game" name="hobby">游戏
+    </label></p>
+
+    <p><label>按钮:
+        <input type="button" value="点击" name="btn1">
+        <input type="image" src="../resources/image/1.png" width="40" alt="加载失败">
+    </label></p>
+
+    <p><label>国家:
+        <select name="列表名称">
+            <!--selected: 默认选中-->
+            <option value="ch">中国</option>
+            <option value="us" selected>美国</option>
+            <option value="uk">英国</option>
+        </select>
+    </label></p>
+
+    <p><label>反馈:
+        <textarea name="textarea" rows="2" cols="30" >文本内容</textarea>
+    </label></p>
+
+    <p>
+        <input type="file" name="files">
+        <input type="button" name="upload" value="上传">
+    </p>
+
+    <p><label>邮箱:
+        <input type="email" name="email">
+    </label></p>
+
+    <p><label>URL:
+        <input type="url" name="url">
+    </label></p>
+
+    <p><label>数字:
+        <input type="number" name="num" max="10000" min="1" step="2">
+    </label></p>
+
+    <p>音量:<label>
+        <input type="range" name="rang" max="100" min="0" step="2">
+    </label></p>
+
+    <p><label for="mark">搜索：
+        <input type="search" name="keywords" id="mark">
+    </label></p>
+
+    <!--增强鼠标可用性-->
+    <p>
+        <label for="mark">点我试试</label>
+    </p>
+
+    <p><label>自定义邮箱:
+        <input type="text" name="diy_email" pattern="^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$">
+    </label></p>
+
+    <p><input type="submit" value="提交"> <input type="reset" value="重置"></p>
+</form>
+
+
+</body>
+</html>

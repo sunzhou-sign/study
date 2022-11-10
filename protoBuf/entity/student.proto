@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "../entity";
+
+message Student {
+  string name = 1;
+  enum Gender {
+    FEMALE = 0;
+    MALE = 1;
+  }
+
+  Gender gender = 2;
+
+  repeated int32 scores = 3;
+}

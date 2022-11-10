@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="https://www.baidu.com" method="post">
+    <p>
+        <span>用户名：</span>
+        <input type="text" id="username">
+    </p>
+    <p>
+        <span>密码：</span>
+        <input type="password" id="password">
+    </p>
+
+    <button onclick="aaa()">提交</button>
+</form>
+
+
+<script>
+    function aaa() {
+        let uname = document.getElementById("username")
+        let pwd = document.getElementById("password")
+        console.log(uname.value)
+        console.log(pwd.value)
+    }
+
+</script>
+
+</body>
+</html>

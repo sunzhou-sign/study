@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        /*ul 的第一个元素*/
+        ul > li:first-child {
+            background: #ff9a72;
+        }
+
+        /*ul 的最后一个元素*/
+        ul > li:last-child {
+            background: #1396a7;
+        }
+
+        /*选择p的父元素的 第一个子元素*/
+        p:nth-child(1) {
+            background: #fa3fff;
+        }
+
+        /*选择p的父元素的 p标签的 第三个个子元素*/
+        p:nth-of-type(3) {
+            background: green;
+        }
+
+        .active + h3:hover {
+            background: rebeccapurple;
+        }
+
+
+    </style>
+</head>
+<body>
+<p>p1</p>
+<p class="active">p2</p>
+<h3>h3</h3>
+<p>p3</p>
+<ul>
+    <li>li1</li>
+    <li>li2</li>
+    <li>li3</li>
+</ul>
+
+</body>
+</html>

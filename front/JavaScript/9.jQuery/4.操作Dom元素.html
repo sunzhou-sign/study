@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+<body>
+<ul id="test-ul">
+    <li class="js">JavaScript</li>
+    <li name="python">Python</li>
+</ul>
+
+<script>
+    // 获得值
+    $('#test-ul li[name=python]').text()
+    // 设置值
+    $('#test-ul li[name=python]').text('test')
+
+    // 获得值
+    $('#test-ul').html();
+    // 设置值
+    $('#test-ul').html('<strong>123</strong>')
+
+
+    // css操作
+    $('#test-ul li[name=python]').css({"color":"red"})
+
+    // 显示
+    $('#test-ul li[name=python]').show()
+    // 隐藏
+    $('#test-ul li[name=python]').hide()
+
+</script>
+
+</body>
+</html>

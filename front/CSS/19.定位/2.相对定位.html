@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        div {
+            margin: 15px;
+            padding: 5px;
+            font-size: 18px;
+            line-height: 30px;
+        }
+
+        #father {
+            border: 1px solid red;
+        }
+
+        /*
+        相对原来的位置进行指定的偏移
+        原来的位置有保留
+        */
+        #first {
+            background-color: darkgray;
+            border: 1px dashed red;
+            position: relative; /*相对定位 上下左右*/
+            top: -20px;
+            left: 20px;
+        }
+
+        #second {
+            background-color: darkgray;
+            border: 1px dashed red;
+        }
+
+        #third {
+            background-color: darkgray;
+            border: 1px dashed red;
+            position: relative;
+            bottom: -30px;
+            right: 30px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+<div id="father">
+    <div id="first">第一盒子</div>
+    <div id="second">第二个盒子</div>
+    <div id="third">第三个盒子</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p id="js">JavaScript</p>
+
+<div id="list">
+    <p id="se">JavaSE</p>
+    <p id="ee">JavaEE</p>
+    <p id="me">JavaME</p>
+</div>
+
+<script>
+    var js = document.getElementById("js")
+    var list = document.getElementById("list")
+    var se = document.getElementById("se")
+    var ee = document.getElementById("ee")
+    var me = document.getElementById("me")
+
+    var newP = document.createElement('p')
+    newP.innerText = "新增document"
+    newP.style.color = 'red'
+    list.appendChild(newP)
+
+</script>
+
+</body>
+</html>

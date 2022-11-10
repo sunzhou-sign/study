@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        #divMove {
+            width: 500px;
+            height: 500px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+
+mouse:<span id="mouseMove"></span>
+<div id="divMove">
+    移动
+</div>
+
+<script>
+
+    // 当网页加载完毕后 相应事件
+    // $(document).ready(function(){
+    //     $('#divMove').mousemove(function (e) {
+    //         $('#mouseMove').text('x:' + e.pageX + 'y:' + e.pageY)
+    //     })
+    // })
+
+    // 简写（同上）
+    $(function () {
+        $('#divMove').mousemove(function (e) {
+            $('#mouseMove').text('x:' + e.pageX + 'y:' + e.pageY)
+        })
+    })
+
+</script>
+
+</body>
+</html>

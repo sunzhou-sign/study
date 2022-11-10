@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .demo a {
+            float: left;
+            display: block;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: #088df1;
+            text-align: center;
+            color: #f30a20;
+            text-decoration: none;
+            margin-right: 15px;
+            font: bold 20px/50px Arial;
+        }
+
+        /*存在id属性的元素*/
+        /*a[id]{*/
+        /*    background: yellow;*/
+        /*}*/
+
+        /*存在id属性并且等于first的元素*/
+        a[id=first]{
+            background: yellow;
+        }
+
+        /*class 包含links*/
+        a[class *="links"]{
+            background: #fa3fff;
+        }
+
+        /*选中变色*/
+        .demo > a:hover{
+            background: white;
+        }
+
+        /*href 以http开头*/
+        a[href^="http"] {
+            background: #1396a7;
+        }
+
+        /*href 以pdf结尾*/
+        a[href$="pdf"] {
+            background: rebeccapurple;
+        }
+
+    </style>
+
+
+</head>
+<body>
+<p class="demo">
+    <a href="http://www.baidu.com" class="links item first" id="first" target="_blank">1</a>
+    <a href="" class="links item active" target="_blank" title="test">2</a>
+    <a href="images/1.html" class="links item">3</a>
+    <a href="images/123.png" class="links item">4</a>
+    <a href="images/123.jpg" class="links item">5</a>
+    <a href="abc">6</a>
+    <a href="/a.pdf">7</a>
+    <a href="/abc.pdf">8</a>
+    <a href="abc.doc">9</a>
+    <a href="abcd.dock" class="links item last">10</a>
+</p>
+
+</body>
+</html>

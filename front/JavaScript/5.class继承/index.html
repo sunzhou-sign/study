@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        class Person {
+            name;
+            age;
+
+            constructor(name, age) {
+                this.name = name
+                this.age = age
+            }
+
+            getAge() {
+                return this.age
+            }
+        }
+
+        p1 = new Person()
+        p1.age = 23
+        console.log(p1.getAge())
+
+
+        class Student extends Person{
+            grade;
+
+            constructor(name, age) {
+                super(name, age);
+            }
+
+            myGrade(){
+                return this.grade
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

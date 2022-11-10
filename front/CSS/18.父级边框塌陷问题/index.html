@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #father {
+            /*
+            1、增加父级元素的高度
+               简单，元素有固定高度就会被限制
+            */
+            /*height: 800px;*/
+            border: 1px solid black;
+
+            /*
+            3、在父级元素中增加overflow
+               简单， 下拉的一些场景避免使用
+            */
+            /*overflow: hidden;*/
+        }
+
+        /*
+        4、父类添加一个伪类：alter
+           略复杂，无副作用，推荐使用
+        */
+        #father:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        #im1 {
+            border: 2px solid red;
+            display: inline-block;
+            float: left;
+        }
+
+        #im2 {
+            border: 2px solid blue;
+            display: inline-block;
+            float: left;
+        }
+
+        #im3 {
+            border: 2px solid green;
+            display: inline-block;
+            float: right;
+        }
+
+
+        /*
+        clear: right; 右侧不允许右浮动元素
+        clear: left; 左侧不允许右浮动元素
+        clear: both; 两侧不允许有浮动元素
+        clear: none;
+        */
+        #wor1 {
+            border: 2px solid #fa3fff;
+            font-size: 16px;
+            line-height: 30px;
+            display: inline-block;
+            float: right;
+        }
+
+        .clear {
+            clear: both;
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="father">
+    <div id="im1">
+        <img src="../../HTML/resources/image/2.jpeg" width="200">
+    </div>
+
+    <div id="im2">
+        <img src="../../HTML/resources/image/3.png" width="300">
+    </div>
+
+    <div id="im3">
+        <img src="../../HTML/resources/image/4.png" width="200">
+    </div>
+
+    <div id="wor1">
+        浮动的盒子可以向做浮动，可可以向右浮动，直到它的外边缘碰到包含
+    </div>
+
+    <!--
+    2、增加空的div标签，清除浮动
+       简单，代码中尽量避免空div
+    -->
+    <!--    <div class="clear"></div>-->
+
+</div>
+
+</body>
+</html>

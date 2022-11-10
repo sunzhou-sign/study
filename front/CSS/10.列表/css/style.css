@@ -1,0 +1,43 @@
+
+#nav{
+    width: 200px;
+    background: darkgray;
+}
+
+a{
+    text-decoration: none;
+    font-size: 14px;
+    color: black;
+}
+
+a:hover{
+    color: orange;
+    text-decoration: underline;
+}
+
+.title{
+    font-size: 18px;
+    font-weight: bold;
+    text-indent: 1em;
+    line-height: 35px;
+    background: red url("../../../HTML/resources/image/1.png");
+}
+
+/*
+list-style:
+none 去掉原点
+circle 空心圆
+decimal 数字
+square 正方形
+*/
+
+/*ul{*/
+/*    background: darkgray;*/
+/*}*/
+
+ul li {
+    height: 30px;
+    list-style: none;
+}
+
+

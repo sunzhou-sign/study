@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        var person = {
+            name: "测试",
+            birthday: 1996,
+            age: function () {
+                now = new Date().getFullYear()
+                alert(now - this.birthday)
+            }
+        }
+        person.age()
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>
