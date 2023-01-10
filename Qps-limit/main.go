@@ -99,7 +99,3 @@ func Runner(baton chan int) {
 
 	baton <- newRunner
 }
-
-func main() {
-	fmt.Println(len("f01ed02817c3fcf358e84bb153dc0b8e"))
-}
